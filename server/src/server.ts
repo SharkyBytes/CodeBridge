@@ -42,7 +42,11 @@ const app = express()
 
 app.use(express.json())
 
-app.use(cors())
+app.use(cors({
+	origin: "https://code-bridge-gamma.vercel.app", // Allow only your frontend URL
+	methods: ["GET", "POST"],
+	credentials: true // Include credentials if needed
+  }));
 
 app.use(express.static(path.join(__dirname, "public"))) // Serve static files
 
