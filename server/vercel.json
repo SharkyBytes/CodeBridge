@@ -1,0 +1,16 @@
+{
+    "functions": {
+      "src/server.ts": {
+        "runtime": "nodejs14.x" 
+      }
+    },
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/src/server.ts"
+      }
+    ],
+    "env": {
+      "PORT": "3000"
+    }
+  }
