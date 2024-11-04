@@ -1,0 +1,45 @@
+import { useChatRoom } from "@/context/ChatContext"
+import { useViews } from "@/context/ViewContext"
+import { VIEWS } from "@/types/view"
+
+interface ViewButtonProps {
+    viewName: VIEWS
+    icon: JSX.Element
+}
+
+
+
+const ViewButton = ({ viewName, icon }: ViewButtonProps) => {
+    const { activeView, setActiveView, isSidebarOpen, setIsSidebarOpen } =
+        useViews()
+    const { isNewMessage } = useChatRoom()
+
+    const handleViewClick = (viewName: VIEWS) => {
+        if (viewName === activeView) {
+            setIsSidebarOpen(!isSidebarOpen)
+        } else {
+            setIsSidebarOpen(true)
+            setActiveView(viewName)
+        }
+    }
+
+    const isActive = viewName === activeView;
+    const shouldGlow = isActive || (viewName === VIEWS.CHATS && isNewMessage);
+
+    return (
+        <button
+            onClick={() => handleViewClick(viewName)}
+            className={`relative flex items-center justify-center p-1 transition-all duration-300 rounded-lg ${
+                shouldGlow ? "bg-dark shadow-lg shadow-green-500" : ""
+            }`}
+        >
+            {icon}
+            {/* Show dot for new message in chat View Button */}
+            {viewName === VIEWS.CHATS && isNewMessage && (
+                <div className="absolute right-0 top-0 h-3 w-3 rounded-full bg-primary"></div>
+            )}
+        </button>
+    )
+}
+
+export default ViewButton
