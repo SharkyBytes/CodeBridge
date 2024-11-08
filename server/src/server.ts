@@ -42,22 +42,19 @@ const app = express()
 
 app.use(express.json())
 
-app.use(cors({
-	origin: "https://code-bridge-gamma.vercel.app", // Allow only your frontend URL
-	methods: ["GET", "POST"],
-	credentials: true // Include credentials if needed
-  }));
+app.use(cors())
 
 app.use(express.static(path.join(__dirname, "public"))) // Serve static files
 
 const server = http.createServer(app)
 const io = new Server(server, {
 	cors: {
-		origin: "*",
+	  origin: "https://code-bridge-gamma.vercel.app",
 	},
+	path: "/socket.io",
 	maxHttpBufferSize: 1e8,
 	pingTimeout: 60000,
-})
+  });
 
 // This setup is configuring the Socket.IO server for a flexible and resilient connection environment:
 
