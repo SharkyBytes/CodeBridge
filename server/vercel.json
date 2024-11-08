@@ -1,7 +1,7 @@
 {
   "functions": {
     "src/server.ts": {
-      "use": "@vercel/node@2.0.0",  
+  
       "memory": 512,
       "maxDuration": 10
     }

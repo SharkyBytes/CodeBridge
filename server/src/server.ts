@@ -312,9 +312,9 @@ const PORT = process.env.PORT || 3000
 
 app.get("/", (req: Request, res: Response) => {
 	// Send the index.html file
-	return res.json({
-		msg:"true"
-	})
+	// return res.json({
+	// 	msg:"true"
+	// })
 	res.sendFile(path.join(__dirname, "..", "public", "index.html"))
 })
 
