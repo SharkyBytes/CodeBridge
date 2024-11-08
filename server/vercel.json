@@ -1,16 +1,24 @@
 {
-    "functions": {
-      "src/server.ts": {
-        "runtime": "nodejs14.x" 
-      }
-    },
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/src/server.ts"
-      }
-    ],
-    "env": {
-      "PORT": "3000"
+  "functions": {
+    "src/server.ts": {
+      "runtime": "nodejs16.x" 
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/src/server.ts" 
+    }
+  ],
+  "env": {
+    "PORT": "3000", 
+    "CORS_ORIGIN": "https://code-bridge-gamma.vercel.app" 
+  },
+  "builds": [
+    {
+      "src": "src/server.ts",
+      "use": "@vercel/node" 
+    }
+  ],
+  "outputDirectory": "dist" 
+}
