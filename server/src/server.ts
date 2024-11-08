@@ -50,6 +50,7 @@ const server = http.createServer(app)
 const io = new Server(server, {
 	cors: {
 	  origin: "https://code-bridge-gamma.vercel.app",
+	//   https://code-bridge-gamma.vercel.app/
 	},
 	path: "/socket.io",
 	maxHttpBufferSize: 1e8,
